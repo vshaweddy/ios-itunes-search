@@ -26,22 +26,17 @@ class SearchResultController {
         }
         
         var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
-        let searchTermQueryItem = URLQueryItem(name: "term=", value: searchTerm)
-        urlComponents?.queryItems = [searchTermQueryItem]
+        let searchTermQueryItem = URLQueryItem(name: "term", value: searchTerm)
+        let filterTermQueryItem = URLQueryItem(name: "entity", value: resultType.rawValue)
+        urlComponents?.queryItems = [searchTermQueryItem, filterTermQueryItem]
         
-        guard let requestURL = URL(string: "https://itunes.apple.com/lookup?amgArtistId=468749,5723") else {
+        guard let requestURL = urlComponents?.url else {
             print("request URL is nil")
-                        completion(nil)
-                        return
+            completion(nil)
+            return
         }
-        
-//        guard let requestURL = urlComponents?.url else {
-//            print("request URL is nil")
-//            completion(nil)
-//            return
-//        }
-//
-//        print(requestURL)
+
+        print(requestURL)
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.get.rawValue

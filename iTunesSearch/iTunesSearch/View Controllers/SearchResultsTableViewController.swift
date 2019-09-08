@@ -17,12 +17,9 @@ class SearchResultsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        searchBar.delegate = self
-        searchResultsController.performSearch(with: "Jack", for: .musicTrack) { (error) in
-            print(error)
-        }
         tableView.reloadData()
+        searchBar.delegate = self
+        searchBar.resignFirstResponder()
     }
 
     // MARK: - Table view data source
@@ -90,8 +87,12 @@ class SearchResultsTableViewController: UITableViewController {
 }
 
 extension SearchResultsTableViewController: UISearchBarDelegate {
+//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        <#code#>
+//    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        searchBar.resignFirstResponder()
+
         guard let searchTerm = searchBar.text else { return }
         
         var resultType: ResultType!
@@ -99,7 +100,6 @@ extension SearchResultsTableViewController: UISearchBarDelegate {
         switch segmentedControl.selectedSegmentIndex {
         case 0: // filter for apps
             resultType = .software
-//            segmentedControl.titleForSegment(at: 0)
         case 1: // filter for music
             resultType = .musicTrack
         default: // filter for movies
