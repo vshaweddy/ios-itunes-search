@@ -14,6 +14,7 @@
 		E3364C42232341340045F3DF /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3364C41232341340045F3DF /* SearchResult.swift */; };
 		E3364C4423247CED0045F3DF /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3364C4323247CED0045F3DF /* ResultType.swift */; };
 		E3364C4623247D630045F3DF /* SearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3364C4523247D630045F3DF /* SearchResultController.swift */; };
+		E3364C4823249EB00045F3DF /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3364C4723249EB00045F3DF /* SearchResultsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		E3364C41232341340045F3DF /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		E3364C4323247CED0045F3DF /* ResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
 		E3364C4523247D630045F3DF /* SearchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultController.swift; sourceTree = "<group>"; };
+		E3364C4723249EB00045F3DF /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,9 +65,7 @@
 				E3364C3E23233E5F0045F3DF /* Models */,
 				E3364C3D23233E360045F3DF /* View Controllers */,
 				E3364C2B23233DCC0045F3DF /* AppDelegate.swift */,
-				E3364C2F23233DCC0045F3DF /* Main.storyboard */,
 				E3364C3223233DCD0045F3DF /* Assets.xcassets */,
-				E3364C3423233DCD0045F3DF /* LaunchScreen.storyboard */,
 				E3364C3723233DCD0045F3DF /* Info.plist */,
 			);
 			path = iTunesSearch;
@@ -74,6 +74,7 @@
 		E3364C3D23233E360045F3DF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E3364C4723249EB00045F3DF /* SearchResultsTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -98,6 +99,8 @@
 		E3364C4023233E730045F3DF /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				E3364C2F23233DCC0045F3DF /* Main.storyboard */,
+				E3364C3423233DCD0045F3DF /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 			files = (
 				E3364C4623247D630045F3DF /* SearchResultController.swift in Sources */,
 				E3364C42232341340045F3DF /* SearchResult.swift in Sources */,
+				E3364C4823249EB00045F3DF /* SearchResultsTableViewController.swift in Sources */,
 				E3364C4423247CED0045F3DF /* ResultType.swift in Sources */,
 				E3364C2C23233DCC0045F3DF /* AppDelegate.swift in Sources */,
 			);
