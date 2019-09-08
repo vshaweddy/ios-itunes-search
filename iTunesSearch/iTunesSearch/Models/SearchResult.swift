@@ -9,8 +9,8 @@
 import Foundation
 
 struct SearchResult: Codable {
-    let title: String
-    let creator: String
+    let title: String?
+    let creator: String?
     
     enum CodingKeys: String, CodingKey {
         case title = "trackName"
@@ -19,6 +19,6 @@ struct SearchResult: Codable {
 }
 
 // allow us to decode the JSON data into this object, then access the actual search results through its results property
-struct SearchResults: Decodable {
+struct SearchResults: Codable {
     let results: [SearchResult]
 }

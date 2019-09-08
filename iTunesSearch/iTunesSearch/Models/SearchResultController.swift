@@ -9,7 +9,7 @@
 import Foundation
 
 class SearchResultController {
-    private let baseURL = URL(string: "https://itunes.apple.com/search?parameterkeyvalue")
+    private let baseURL = URL(string: "https://itunes.apple.com/search?")
     var searchResults: [SearchResult] = []
     
     enum HTTPMethod: String {
@@ -26,14 +26,22 @@ class SearchResultController {
         }
         
         var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
-        let searchTermQueryItem = URLQueryItem(name: "search", value: searchTerm)
+        let searchTermQueryItem = URLQueryItem(name: "term=", value: searchTerm)
         urlComponents?.queryItems = [searchTermQueryItem]
         
-        guard let requestURL = urlComponents?.url else {
+        guard let requestURL = URL(string: "https://itunes.apple.com/lookup?amgArtistId=468749,5723") else {
             print("request URL is nil")
-            completion(nil)
-            return
+                        completion(nil)
+                        return
         }
+        
+//        guard let requestURL = urlComponents?.url else {
+//            print("request URL is nil")
+//            completion(nil)
+//            return
+//        }
+//
+//        print(requestURL)
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.get.rawValue
@@ -51,6 +59,7 @@ class SearchResultController {
             do {
                 let itemSearch = try jsonDecoder.decode(SearchResults.self, from: data)
                 self.searchResults = itemSearch.results
+                print(self.searchResults, data.description)
                 completion(nil)
             } catch {
                 print("Unable to decode data into SearchResults object: \(error)")

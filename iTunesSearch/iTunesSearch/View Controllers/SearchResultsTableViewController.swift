@@ -9,40 +9,38 @@
 import UIKit
 
 class SearchResultsTableViewController: UITableViewController {
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    private let searchResultsController = SearchResultController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        searchBar.delegate = self
+        searchResultsController.performSearch(with: "Jack", for: .musicTrack) { (error) in
+            print(error)
+        }
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return searchResultsController.searchResults.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath)
+        
+        let result = searchResultsController.searchResults[indexPath.row]
+        cell.textLabel?.text = result.title
+        cell.detailTextLabel?.text = result.creator
+        
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -89,4 +87,34 @@ class SearchResultsTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension SearchResultsTableViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        searchBar.resignFirstResponder()
+        guard let searchTerm = searchBar.text else { return }
+        
+        var resultType: ResultType!
+        
+        switch segmentedControl.selectedSegmentIndex {
+        case 0: // filter for apps
+            resultType = .software
+//            segmentedControl.titleForSegment(at: 0)
+        case 1: // filter for music
+            resultType = .musicTrack
+        default: // filter for movies
+            resultType = .movie
+        }
+        
+        searchResultsController.performSearch(with: searchTerm, for: resultType) { (error) in
+            if let error = error {
+                print("Error loading recipes: \(error)")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 }
