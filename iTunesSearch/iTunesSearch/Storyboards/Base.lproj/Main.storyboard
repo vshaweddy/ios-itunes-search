@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -72,6 +73,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="J0w-yc-jjb" kind="show" identifier="DetailSegue" id="s8O-N5-DO3"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -88,6 +92,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o12-4m-6qa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1089.8550724637682" y="37.5"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="iyi-Ht-UUN">
+            <objects>
+                <viewController id="J0w-yc-jjb" customClass="DetailViewController" customModule="iTunesSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="23x-XB-Ddx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BpE-89-gHP" userLabel="Main Stack View">
+                                <rect key="frame" x="16" y="156" width="382" height="539"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wn3-Ny-PIN">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="414"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TrackName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5Y-E1-xDy">
+                                        <rect key="frame" x="0.0" y="422" width="382" height="36.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ArtistName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTj-h4-agV">
+                                        <rect key="frame" x="0.0" y="466.5" width="382" height="20.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qk5-jB-QMZ">
+                                        <rect key="frame" x="0.0" y="495" width="382" height="18"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kind" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9k-6n-Tdt">
+                                        <rect key="frame" x="0.0" y="521" width="382" height="18"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="qk5-jB-QMZ" firstAttribute="leading" secondItem="Wn3-Ny-PIN" secondAttribute="leading" id="0YS-mc-0jB"/>
+                                    <constraint firstItem="o5Y-E1-xDy" firstAttribute="leading" secondItem="Wn3-Ny-PIN" secondAttribute="leading" id="2aI-y6-a3O"/>
+                                    <constraint firstItem="hTj-h4-agV" firstAttribute="leading" secondItem="Wn3-Ny-PIN" secondAttribute="leading" id="cnS-LT-yub"/>
+                                    <constraint firstItem="L9k-6n-Tdt" firstAttribute="leading" secondItem="Wn3-Ny-PIN" secondAttribute="leading" id="o2k-YG-lRj"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BpE-89-gHP" firstAttribute="leading" secondItem="LXf-fb-MN5" secondAttribute="leading" constant="16" id="04J-DP-zLb"/>
+                            <constraint firstItem="BpE-89-gHP" firstAttribute="top" secondItem="LXf-fb-MN5" secondAttribute="top" constant="16" id="I0D-ge-EyB"/>
+                            <constraint firstItem="LXf-fb-MN5" firstAttribute="trailing" secondItem="BpE-89-gHP" secondAttribute="trailing" constant="16" id="IuU-I0-nmY"/>
+                            <constraint firstItem="LXf-fb-MN5" firstAttribute="bottom" secondItem="BpE-89-gHP" secondAttribute="bottom" constant="167" id="bPW-dO-D5F"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LXf-fb-MN5"/>
+                    </view>
+                    <connections>
+                        <outlet property="countryLabel" destination="qk5-jB-QMZ" id="t4A-YA-k72"/>
+                        <outlet property="creatorLabel" destination="hTj-h4-agV" id="wIr-Bw-7te"/>
+                        <outlet property="imageView" destination="Wn3-Ny-PIN" id="o2M-do-VL7"/>
+                        <outlet property="kindLabel" destination="L9k-6n-Tdt" id="TLK-7Z-E8t"/>
+                        <outlet property="titleLabel" destination="o5Y-E1-xDy" id="6Sr-DH-Pqw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PE7-Of-Ufa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2095.6521739130435" y="37.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DVA-ko-ASo">
