@@ -20,6 +20,35 @@ class SearchResultsTableViewController: UITableViewController {
         tableView.reloadData()
         searchBar.delegate = self
         searchBar.resignFirstResponder()
+        segmentedControl.addTarget(self, action: #selector(updateResult), for: .valueChanged)
+    }
+    
+    // MARK: - Private Function
+    @objc
+    private func updateResult() {
+        guard let searchTerm = searchBar.text else { return }
+        
+        var resultType: ResultType!
+        
+        switch segmentedControl.selectedSegmentIndex {
+        case 0: // filter for apps
+            resultType = .software
+        case 1: // filter for music
+            resultType = .musicTrack
+        default: // filter for movies
+            resultType = .movie
+        }
+        
+        searchResultsController.performSearch(with: searchTerm, for: resultType) { (error) in
+            if let error = error {
+                print("Error loading recipes: \(error)")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -87,34 +116,7 @@ class SearchResultsTableViewController: UITableViewController {
 }
 
 extension SearchResultsTableViewController: UISearchBarDelegate {
-//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        <#code#>
-//    }
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-
-        guard let searchTerm = searchBar.text else { return }
-        
-        var resultType: ResultType!
-        
-        switch segmentedControl.selectedSegmentIndex {
-        case 0: // filter for apps
-            resultType = .software
-        case 1: // filter for music
-            resultType = .musicTrack
-        default: // filter for movies
-            resultType = .movie
-        }
-        
-        searchResultsController.performSearch(with: searchTerm, for: resultType) { (error) in
-            if let error = error {
-                print("Error loading recipes: \(error)")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+        updateResult()
     }
 }
